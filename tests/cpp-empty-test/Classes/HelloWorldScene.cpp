@@ -72,6 +72,12 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite);
+
+    auto masker = Sprite::create("masker.png");
+    auto glProgram = GLProgram::createWithFilenames("testAdd.vert", "testAdd.fsh");
+    masker->setGLProgram(glProgram);
+    masker->setPosition(Vec2(visibleSize / 2) + origin);
+    this->addChild(masker);
     
     return true;
 }
