@@ -45,6 +45,18 @@ g_guisTests[] =
     },
 #endif
     {
+        "EditBox Test",
+        [](Ref* sender)
+        {
+            UISceneManager* sceneManager = UISceneManager::sharedUISceneManager();
+            sceneManager->setCurrentUISceneId(kUIEditBoxTest);
+            sceneManager->setMinUISceneId(kUIEditBoxTest);
+            sceneManager->setMaxUISceneId(kUIEditBoxTest);
+            Scene* scene = sceneManager->currentUIScene();
+            Director::getInstance()->replaceScene(scene);
+        }
+    },
+    {
         "focus test",
         [](Ref* sender)
         {
@@ -77,7 +89,7 @@ g_guisTests[] =
             UISceneManager* sceneManager = UISceneManager::sharedUISceneManager();
             sceneManager->setCurrentUISceneId(kUIButtonTest);
             sceneManager->setMinUISceneId(kUIButtonTest);
-            sceneManager->setMaxUISceneId(kUIButtonTestZoomScale);
+            sceneManager->setMaxUISceneId(kUIButtonIgnoreContentSizeTest);
             Scene* scene = sceneManager->currentUIScene();
             Director::getInstance()->replaceScene(scene);
         }
