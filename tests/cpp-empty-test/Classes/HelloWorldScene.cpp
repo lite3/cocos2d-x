@@ -73,11 +73,21 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
     this->addChild(sprite);
 
-    auto masker = Sprite::create("masker.png");
-    auto glProgram = GLProgram::createWithFilenames("testAdd.vert", "testAdd.fsh");
-    masker->setGLProgram(glProgram);
+    auto masker = Sprite::create("test/../masker.png");
+//     auto glProgram = GLProgram::createWithFilenames("testAdd.vert", "testAdd.fsh");
+//     masker->setGLProgram(glProgram);
     masker->setPosition(Vec2(visibleSize / 2) + origin);
     this->addChild(masker);
+
+    
+    auto action1 = MoveTo::create(0.5, Vec2(0,0));
+    auto action2 = MoveTo::create(1, Vec2(100, 100));
+    auto action3 = MoveTo::create(1, Vec2(0,0));
+    auto action4 = Sequence::createWithTwoActions(action2, action3);
+    //auto action5 = Repeat::create(action4, 100);
+    auto action5 = RepeatForever::create(action4);
+    auto action6 = Sequence::createWithTwoActions(action4, action5);
+    sprite->runAction(action6);
     
     return true;
 }
