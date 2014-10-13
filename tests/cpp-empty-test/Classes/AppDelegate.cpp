@@ -4,6 +4,7 @@
 #include <string>
 
 #include "HelloWorldScene.h"
+#include "FlashColorTransform.h"
 #include "AppMacros.h"
 
 USING_NS_CC;
@@ -84,7 +85,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::scene();
+    //auto scene = HelloWorld::scene();
+    auto scene = FlashColorTransform::scene();
 
     // run
     director->runWithScene(scene);
