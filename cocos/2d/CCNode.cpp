@@ -37,7 +37,7 @@ THE SOFTWARE.
 #include "base/CCDirector.h"
 #include "base/CCScheduler.h"
 #include "base/CCEventDispatcher.h"
-#include "base/CCCamera.h"
+#include "2d/CCCamera.h"
 #include "2d/CCActionManager.h"
 #include "2d/CCScene.h"
 #include "2d/CCComponent.h"
@@ -1100,6 +1100,7 @@ void Node::removeAllChildren()
     this->removeAllChildrenWithCleanup(true);
 }
 
+#if CC_USE_PHYSICS
 void Node::removeFromPhysicsWorld()
 {
     if (_physicsBody != nullptr)
@@ -1112,6 +1113,7 @@ void Node::removeFromPhysicsWorld()
         child->removeFromPhysicsWorld();
     }
 }
+#endif
 
 void Node::removeAllChildrenWithCleanup(bool cleanup)
 {

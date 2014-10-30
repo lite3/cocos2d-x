@@ -45,7 +45,6 @@ NS_CC_BEGIN
  * @{
  */
 
-struct _hashUniformEntry;
 class GLProgram;
 
 typedef void (*GLInfoFunction)(GLuint program, GLenum pname, GLint* params);
@@ -175,7 +174,7 @@ public:
      * @lua initWithString
      */
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
     /** Initializes the CCGLProgram with precompiled shader program */
     static GLProgram* createWithPrecompiledProgramByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
     bool initWithPrecompiledProgramByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray);
@@ -340,10 +339,9 @@ protected:
     GLuint            _vertShader;
     GLuint            _fragShader;
     GLint             _builtInUniforms[UNIFORM_MAX];
-    struct _hashUniformEntry* _hashForUniforms;
     bool              _hasShaderCompiler;
         
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || defined(WP8_SHADER_COMPILER)
     std::string       _shaderId;
 #endif
 
@@ -360,6 +358,7 @@ protected:
 
     std::unordered_map<std::string, Uniform> _userUniforms;
     std::unordered_map<std::string, VertexAttrib> _vertexAttribs;
+    std::unordered_map<GLint, GLvoid*> _hashForUniforms;
 };
 
 NS_CC_END
